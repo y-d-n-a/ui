@@ -18,7 +18,7 @@ func RunMulti(prompt string, options []Option) ([]Option, error) {
 	if err != nil {
 		return nil, fmt.Errorf("raw mode: %w", err)
 	}
-	defer term.Restore(fd, oldState)
+	defer func() { _ = term.Restore(fd, oldState) }()
 
 	fmt.Print(hideCursor)
 	defer fmt.Print(showCursor)

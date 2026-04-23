@@ -17,10 +17,14 @@ go.work
 
 
 ## DIRECTORIES ##
-*/
+.githooks
+.nomad
+.playbooks
 
 
 ## FILES ##
+build.sh
+.agentignore
 
 
 ## IDE ##
