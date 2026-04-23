@@ -35,7 +35,7 @@ func Run(prompt string, options []Option) (Option, error) {
 	if err != nil {
 		return Option{}, fmt.Errorf("raw mode: %w", err)
 	}
-	defer term.Restore(fd, oldState)
+	defer func() { _ = term.Restore(fd, oldState) }()
 
 	fmt.Print(hideCursor)
 	defer fmt.Print(showCursor)
@@ -219,7 +219,7 @@ func Prompt(label string) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("raw mode: %w", err)
 	}
-	defer term.Restore(fd, oldState)
+	defer func() { _ = term.Restore(fd, oldState) }()
 
 	fmt.Print(showCursor)
 	defer fmt.Print(hideCursor)
@@ -265,7 +265,7 @@ func PromptSecret(label string) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("raw mode: %w", err)
 	}
-	defer term.Restore(fd, oldState)
+	defer func() { _ = term.Restore(fd, oldState) }()
 
 	fmt.Print(showCursor)
 	defer fmt.Print(hideCursor)
